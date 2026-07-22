@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClimaNow · Panel Meteorológico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">&#9925;</span>
+      <div>
+        <h1>ClimaNow</h1>
+        <p class="tagline">Panel meteorológico en tiempo real</p>
+      </div>
+    </div>
+    <div class="api-badge" title="Fuente de datos">Datos: Open-Meteo API</div>
+  </header>
 
+  <main class="container">
+    <section class="search-panel">
+      <form id="search-form" autocomplete="off">
+        <label for="city-input" class="sr-only">Ciudad</label>
+        <div class="search-wrap">
+          <input id="city-input" type="text" placeholder="Escribe una ciudad (ej. Bogotá, Madrid, Tokyo)..." aria-label="Buscar ciudad" />
+          <button type="submit" id="search-btn">Buscar</button>
+        </div>
+        <div class="quick-cities" id="quick-cities">
+          <button type="button" data-city="Bogotá">Bogotá</button>
+          <button type="button" data-city="Madrid">Madrid</button>
+          <button type="button" data-city="México">Ciudad de México</button>
+          <button type="button" data-city="Buenos Aires">Buenos Aires</button>
+          <button type="button" data-city="Tokyo">Tokyo</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="status" class="status" aria-live="polite"></section>
+
+    <section id="result" class="result hidden">
+      <article class="card current-card">
+        <div class="current-head">
+          <div>
+            <h2 id="place-name">—</h2>
+            <p id="place-meta" class="muted">—</p>
+          </div>
+          <div class="current-icon" id="current-icon" aria-hidden="true">&#9728;</div>
+        </div>
+        <div class="current-temp">
+          <span id="current-temp">--</span><span class="deg">°C</span>
+        </div>
+        <p id="current-desc" class="current-desc muted">—</p>
+
+        <div class="metrics">
+          <div class="metric">
+            <span class="metric-label">Sensación</span>
+            <span class="metric-value" id="feels-like">--°</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Humedad</span>
+            <span class="metric-value" id="humidity">--%</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Viento</span>
+            <span class="metric-value" id="wind">-- km/h</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Precipitación</span>
+            <span class="metric-value" id="precip">-- mm</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card forecast-card">
+        <h3>Pronóstico de 7 días</h3>
+        <div class="forecast-grid" id="forecast-grid"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Proyecto académico · ClimaNow &copy; 2026 · Potenciado por
+      <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (API pública y gratuita)
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
